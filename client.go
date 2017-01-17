@@ -22,6 +22,7 @@ func (c *Client) CreateOrUpdateConsumer(consumer *Consumer) (*Consumer, error) {
 	url := c.address + "/v1/consumers"
 	resp, err := request.PUT(url).
 		Set("Authorization", c.token).
+		SendJSON(consumer).
 		End()
 
 	if err != nil {
@@ -51,6 +52,7 @@ func (c *Client) CreateToken(token *Token) (*Token, error) {
 	url := c.address + "/v1/tokens"
 	resp, err := request.POST(url).
 		Set("Authorization", c.token).
+		SendJSON(token).
 		End()
 
 	if err != nil {
